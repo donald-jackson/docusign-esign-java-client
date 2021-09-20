@@ -4,11 +4,17 @@
 [![Maven Central status][maven-image]][maven-url]
 
 ## Requirements
-*   Java 1.9+
-*   Free [developer account](https://go.docusign.com/sandbox/productshot/?elqCampaignId=16531)
+
+- Java 1.7+
+- Free [Developer Sandbox](https://go.docusign.com/sandbox/productshot/?elqCampaignId=16531)
 
 ## Compatibility
-*   Java 1.9+
+
+- Java 1.7+
+
+## Note
+
+This open-source SDK is provided for cases where you would like to make additional changes that the SDK does not provide out-of-the-box. If you simply want to use the SDK with any of the examples shown in the [Developer Center](https://developers.docusign.com/esign-rest-api/code-examples), follow the installation instructions below.
 
 ## Installation
 This SDK is provided as open source, which enables you to customize its functionality to suit your particular use case. To do so, download or clone the repository. If the SDK’s given functionality meets your integration needs, or if you’re working through our [code examples](https://developers.docusign.com/docs/esign-rest-api/how-to/) from the [DocuSign Developer Center](https://developers.docusign.com/), you merely need to install it by following the instructions below.
@@ -34,19 +40,31 @@ This SDK is provided as open source, which enables you to customize its function
 
 ## Dependencies
 This client has the following external dependencies:
-*   io.swagger:swagger-annotations:jar:1.5.17
-*   org.glassfish.jersey.core:jersey-client:jar:2.29.1
-*   org.glassfish.jersey.media:jersey-media-multipart:jar:2.29.1
-*   org.glassfish.jersey.media:jersey-media-json-jackson:2.29.1
-*   com.fasterxml.jackson.core:jackson-core:jar:2.12.1
-*   com.fasterxml.jackson.core:jackson-annotations:jar:2.12.1
-*   com.fasterxml.jackson.core:jackson-databind:2.12.1
-*   com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.12.1
-*   com.brsanthu:migbase64:2.2
-*   junit:junit:jar:4.13.1
-*   com.apache.oltu.oauth2:org.apache.oltu.oauth2.client:1.0.2
-*   com.auth0:java-jwt:3.4.1
-*   org.bouncycastle:bcprov-jdk15on:1.60
+
+- swagger:swagger-annotations:jar:1.5.8
+- sun.jersey:jersey-client:jar:1.19.1
+- sun.jersey.contribs:jersey-multipart:jar:1.19.1
+- fasterxml.jackson.core:jackson-core:jar:2.9.9
+- fasterxml.jackson.core:jackson-annotations:jar:2.9.9
+- fasterxml.jackson.core:jackson-databind:jar:2.9.9
+- fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.9.9
+- fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.1.5
+- joda-time:joda-time:jar:2.9.3
+- brsanthu:migbase64:jar:2.2
+- apache.oltu.oauth2:org.apache.oltu.oauth2.client:1.0.2
+- junit:junit:jar:4.12
+
+## Code Examples
+
+### Launchers
+
+DocuSign provides a sample application code referred to as a [Launcher](https://github.com/docusign/code-examples-java). The Launcher contains a set of 31 common use cases and associated source files. These examples use either DocuSign&#39;s [Authorization Code Grant](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-code-grant) or [JSON Web Tokens (JWT)](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken) flows.
+
+### Proof-of-concept applications
+
+If your goal is to create a proof-of-concept application, DocuSign provides a set of [Quick Start](https://github.com/docusign/qs-java) examples. The Quick Start examples are meant to be used with DocuSign's [OAuth Token Generator](https://developers.docusign.com/oauth-token-generator), which will allow you to generate tokens for the Demo/Sandbox environment only. These tokens last for eight hours and will enable you to build your proof-of-concept application without the need to fully implement an OAuth solution.
+
+## OAuth Implementations
 
 ## Code examples
 You can find on our GitHub a self-executing package of code examples for the eSignature Java SDK, called a [Launcher](https://github.com/docusign/code-examples-java/blob/master/README.md), that demonstrates common use cases. You can also download a version preconfigured for your DocuSign developer account from [Quickstart](https://developers.docusign.com/docs/esign-rest-api/quickstart/). These examples can use either the [Authorization Code Grant](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-code-grant) or [JSON Web Token (JWT)](https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken) authentication workflows.

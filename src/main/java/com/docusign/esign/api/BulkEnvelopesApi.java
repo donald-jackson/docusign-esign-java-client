@@ -1,7 +1,7 @@
 
 package com.docusign.esign.api;
 
-import javax.ws.rs.core.GenericType;
+import com.sun.jersey.api.client.GenericType;
 
 import com.docusign.esign.client.ApiException;
 import com.docusign.esign.client.ApiClient;
@@ -243,7 +243,7 @@ public class BulkEnvelopesApi {
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /// <summary>
-  /// Gets envelopes from a specific bulk send batch 
+  /// Gets envelopes from a specific bulk send batch
   /// </summary>
   public class GetBulkSendBatchEnvelopesOptions
   {
@@ -256,7 +256,7 @@ public class BulkEnvelopesApi {
   private String status = null;
   private String userId = null;
   /*
-   * 
+   *
    */
   public void setCount(String count) {
     this.count = count;
@@ -266,7 +266,7 @@ public class BulkEnvelopesApi {
     return this.count;
   }
   /*
-   * 
+   *
    */
   public void setInclude(String include) {
     this.include = include;
@@ -276,7 +276,7 @@ public class BulkEnvelopesApi {
     return this.include;
   }
   /*
-   * 
+   *
    */
   public void setOrder(String order) {
     this.order = order;
@@ -286,7 +286,7 @@ public class BulkEnvelopesApi {
     return this.order;
   }
   /*
-   * 
+   *
    */
   public void setOrderBy(String orderBy) {
     this.orderBy = orderBy;
@@ -296,7 +296,7 @@ public class BulkEnvelopesApi {
     return this.orderBy;
   }
   /*
-   * 
+   *
    */
   public void setSearchText(String searchText) {
     this.searchText = searchText;
@@ -306,7 +306,7 @@ public class BulkEnvelopesApi {
     return this.searchText;
   }
   /*
-   * 
+   *
    */
   public void setStartPosition(String startPosition) {
     this.startPosition = startPosition;
@@ -316,7 +316,7 @@ public class BulkEnvelopesApi {
     return this.startPosition;
   }
   /*
-   * 
+   *
    */
   public void setStatus(String status) {
     this.status = status;
@@ -326,7 +326,7 @@ public class BulkEnvelopesApi {
     return this.status;
   }
   /*
-   * 
+   *
    */
   public void setUserId(String userId) {
     this.userId = userId;
@@ -339,18 +339,18 @@ public class BulkEnvelopesApi {
 
    /**
    * Gets envelopes from a specific bulk send batch
-   * 
+   *
    * @param accountId The external account number (int) or account ID Guid. (required)
    * @param bulkSendBatchId  (required)
    * @return EnvelopesInformation
-   */ 
+   */
   public EnvelopesInformation getBulkSendBatchEnvelopes(String accountId, String bulkSendBatchId) throws ApiException {
     return getBulkSendBatchEnvelopes(accountId, bulkSendBatchId, null);
   }
 
   /**
    * Gets envelopes from a specific bulk send batch
-   * 
+   *
    * @param accountId The external account number (int) or account ID Guid. (required)
    * @param bulkSendBatchId  (required)
    * @param options for modifying the method behavior.
@@ -359,17 +359,17 @@ public class BulkEnvelopesApi {
    */
   public EnvelopesInformation getBulkSendBatchEnvelopes(String accountId, String bulkSendBatchId, BulkEnvelopesApi.GetBulkSendBatchEnvelopesOptions options) throws ApiException {
     Object localVarPostBody = "{}";
-    
+
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getBulkSendBatchEnvelopes");
     }
-    
+
     // verify the required parameter 'bulkSendBatchId' is set
     if (bulkSendBatchId == null) {
       throw new ApiException(400, "Missing the required parameter 'bulkSendBatchId' when calling getBulkSendBatchEnvelopes");
     }
-    
+
     // create path and map variables
     String localVarPath = "/v2.1/accounts/{accountId}/bulk_send_batch/{bulkSendBatchId}/envelopes"
       .replaceAll("\\{" + "accountId" + "\\}", apiClient.escapeString(accountId.toString()))
@@ -399,9 +399,9 @@ public class BulkEnvelopesApi {
       localVarQueryParams.addAll(apiClient.parameterToPair("user_id", options.userId));
     }
 
-    
 
-    
+
+
 
     final String[] localVarAccepts = {
       "application/json"
@@ -409,7 +409,7 @@ public class BulkEnvelopesApi {
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
     final String[] localVarContentTypes = {
-      
+
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
@@ -421,7 +421,7 @@ public class BulkEnvelopesApi {
 
   /**
    * Gets a specific bulk send batch status
-   * 
+   *
    * @param accountId The external account number (int) or account ID Guid. (required)
    * @param bulkSendBatchId  (required)
    * @return BulkSendBatchStatus
@@ -473,7 +473,7 @@ public class BulkEnvelopesApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /// <summary>
-  /// Returns a list of bulk send batch satuses initiated by account. 
+  /// Returns a list of bulk send batch satuses initiated by account.
   /// </summary>
   public class GetBulkSendBatchesOptions
   {
@@ -483,7 +483,7 @@ public class BulkEnvelopesApi {
   private String startPosition = null;
   private String status = null;
   /*
-   * 
+   *
    */
   public void setBatchIds(String batchIds) {
     this.batchIds = batchIds;
@@ -493,7 +493,7 @@ public class BulkEnvelopesApi {
     return this.batchIds;
   }
   /*
-   * 
+   *
    */
   public void setCount(String count) {
     this.count = count;
@@ -503,7 +503,7 @@ public class BulkEnvelopesApi {
     return this.count;
   }
   /*
-   * 
+   *
    */
   public void setSearchText(String searchText) {
     this.searchText = searchText;
@@ -513,7 +513,7 @@ public class BulkEnvelopesApi {
     return this.searchText;
   }
   /*
-   * 
+   *
    */
   public void setStartPosition(String startPosition) {
     this.startPosition = startPosition;
@@ -523,7 +523,7 @@ public class BulkEnvelopesApi {
     return this.startPosition;
   }
   /*
-   * 
+   *
    */
   public void setStatus(String status) {
     this.status = status;
@@ -536,7 +536,7 @@ public class BulkEnvelopesApi {
 
    /**
    * Returns a list of bulk send batch satuses initiated by account.
-   * 
+   *
    * @param accountId The external account number (int) or account ID Guid. (required)
    * @return BulkSendBatchSummaries
    */ 
@@ -546,7 +546,7 @@ public class BulkEnvelopesApi {
 
   /**
    * Returns a list of bulk send batch satuses initiated by account.
-   * 
+   *
    * @param accountId The external account number (int) or account ID Guid. (required)
    * @param options for modifying the method behavior.
    * @return BulkSendBatchSummaries
@@ -705,7 +705,7 @@ public class BulkEnvelopesApi {
 
   /**
    * Put/Update a specific bulk send batch status
-   * 
+   *
    * @param accountId The external account number (int) or account ID Guid. (required)
    * @param bulkSendBatchId  (required)
    * @param bulkSendBatchRequest  (optional)
@@ -736,7 +736,7 @@ public class BulkEnvelopesApi {
     java.util.Map<String, String> localVarHeaderParams = new java.util.HashMap<String, String>();
     java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
 
-    
+
 
     
 
@@ -810,6 +810,73 @@ public class BulkEnvelopesApi {
     String[] localVarAuthNames = new String[] { "docusignAccessCode" };
 
     GenericType<BulkSendingList> localVarReturnType = new GenericType<BulkSendingList>() {};
+    return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+
+  /**
+   * Adds or replaces envelope bulk recipients.
+   * Updates the bulk recipients in a draft envelope using a file upload. The Content-Type supported for uploading a bulk recipient file is CSV (text/csv).  The REST API does not support modifying individual rows or values in the bulk recipients file. It only allows the entire file to be added or replaced with a new file.
+   * @param accountId The external account number (int) or account ID GUID. (required)
+   * @param envelopeId The envelope&#39;s GUID.   Example: &#x60;93be49ab-xxxx-xxxx-xxxx-f752070d71ec&#x60; (required)
+   * @param recipientId A local reference that senders use to map recipients to other objects, such as specific document tabs. Within an envelope, each &#x60;recipientId&#x60; must be unique, but there is no uniqueness requirement across envelopes. For example, many envelopes assign the first recipient a &#x60;recipientId&#x60; of &#x60;1&#x60;. (required)
+   * @param bulkRecipientsRequest  (required)
+   * @return BulkRecipientsSummaryResponse
+   * @throws ApiException if fails to make API call
+   */
+  public BulkRecipientsSummaryResponse updateRecipients(String accountId, String envelopeId, String recipientId, byte[] bulkRecipientsRequest) throws ApiException {
+    Object localVarPostBody = bulkRecipientsRequest;
+    
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateRecipients");
+    }
+    
+    // verify the required parameter 'envelopeId' is set
+    if (envelopeId == null) {
+      throw new ApiException(400, "Missing the required parameter 'envelopeId' when calling updateRecipients");
+    }
+    
+    // verify the required parameter 'recipientId' is set
+    if (recipientId == null) {
+      throw new ApiException(400, "Missing the required parameter 'recipientId' when calling updateRecipients");
+    }
+    
+    // verify the required parameter 'bulkRecipientsRequest' is set
+    if (bulkRecipientsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'bulkRecipientsRequest' when calling updateRecipients");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/v2.1/accounts/{accountId}/envelopes/{envelopeId}/recipients/{recipientId}/bulk_recipients"
+      .replaceAll("\\{" + "accountId" + "\\}", apiClient.escapeString(accountId.toString()))
+      .replaceAll("\\{" + "envelopeId" + "\\}", apiClient.escapeString(envelopeId.toString()))
+      .replaceAll("\\{" + "recipientId" + "\\}", apiClient.escapeString(recipientId.toString()));
+
+    // query params
+    java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();
+    java.util.List<Pair> localVarCollectionQueryParams = new java.util.ArrayList<Pair>();
+    java.util.Map<String, String> localVarHeaderParams = new java.util.HashMap<String, String>();
+    java.util.Map<String, Object> localVarFormParams = new java.util.HashMap<String, Object>();
+
+    
+
+    
+
+    
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "text/csv"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "docusignAccessCode" };
+
+    GenericType<BulkRecipientsSummaryResponse> localVarReturnType = new GenericType<BulkRecipientsSummaryResponse>() {};
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }

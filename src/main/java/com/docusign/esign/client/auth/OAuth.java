@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
-import com.docusign.esign.client.ApiException;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.oltu.oauth2.client.OAuthClient;
-import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.client.response.OAuthJSONAccessTokenResponse;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest.AuthenticationRequestBuilder;
@@ -20,7 +17,8 @@ import org.apache.oltu.oauth2.common.token.BasicOAuthToken;
 
 import com.docusign.esign.client.Pair;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.ws.rs.client.Client;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientHandlerException;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -66,7 +64,7 @@ public class OAuth implements Authentication {
 	}
 
 	public OAuth(Client client, TokenRequestBuilder tokenRequestBuilder, AuthenticationRequestBuilder authenticationRequestBuilder) {
-		this.oauthClient = new OAuthClient(new URLConnectionClient());
+		this.oauthClient = new OAuthClient(new OAuthJerseyClient(client));
 		this.tokenRequestBuilder = tokenRequestBuilder;
 		this.authenticationRequestBuilder = authenticationRequestBuilder;
 	}
@@ -95,44 +93,40 @@ public class OAuth implements Authentication {
 	}
 
 	public OAuth(OAuthFlow flow, String authorizationUrl, String tokenUrl, String scopes) {
-		this(ClientBuilder.newBuilder().build(), flow, authorizationUrl, tokenUrl, scopes);
+		this(new Client(null, null), flow, authorizationUrl, tokenUrl, scopes);
 	}
 
 	@Override
 	public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {
 		// If first time, get the token
 		if (expirationTimeMillis == null || System.currentTimeMillis() >= expirationTimeMillis) {
-			try {
-				updateAccessToken();
-			} catch (ApiException e) {
-				accessToken = null;
-			}
+			updateAccessToken();
 		}
 		if (accessToken != null) {
 			headerParams.put("Authorization", "Bearer " + accessToken);
 		}
 	}
 
-	public synchronized void updateAccessToken() throws ApiException {
+	public synchronized void updateAccessToken() {
 		OAuthJSONAccessTokenResponse accessTokenResponse;
 		try {
 			accessTokenResponse = oauthClient.accessToken(tokenRequestBuilder.buildBodyMessage());
 		} catch (Exception e) {
-			throw new ApiException(e.getMessage());
+			throw new ClientHandlerException(e.getMessage(), e);
 		}
 		if (accessTokenResponse != null)
 		{
 			// FIXME: This does not work in case of non HTTP 200 :-( oauthClient needs to return the plain HTTP resonse
 			if (accessTokenResponse.getResponseCode() != Response.Status.OK.getStatusCode())
 			{
-				throw new ApiException("Error while requesting an access token, received HTTP code: " + accessTokenResponse.getResponseCode());
+				throw new ClientHandlerException("Error while requesting an access token, received HTTP code: " + accessTokenResponse.getResponseCode());
 			}
 
 			if (accessTokenResponse.getAccessToken() == null) {
-				throw new ApiException("Error while requesting an access token. No 'access_token' found.");
+				throw new ClientHandlerException("Error while requesting an access token. No 'access_token' found.");
 			}
 			if (accessTokenResponse.getExpiresIn() == null) {
-				throw new ApiException("Error while requesting an access token. No 'expires_in' found.");
+				throw new ClientHandlerException("Error while requesting an access token. No 'expires_in' found.");
 			}
 
 			setAccessToken(accessTokenResponse.getAccessToken(), accessTokenResponse.getExpiresIn());
@@ -141,7 +135,7 @@ public class OAuth implements Authentication {
 			}
 		} else {
 			// in case of HTTP error codes accessTokenResponse is null, thus no check of accessTokenResponse.getResponseCode() possible :-(
-			throw new ApiException("Error while requesting an access token. No accessTokenResponse object recieved, maybe a non HTTP 200 received?");
+			throw new ClientHandlerException("Error while requesting an access token. No accessTokenResponse object recieved, maybe a non HTTP 200 received?");
 		}
 	}
 
@@ -183,7 +177,7 @@ public class OAuth implements Authentication {
 	}
 
 	public void setOauthClient(Client client) {
-		this.oauthClient = new OAuthClient(new URLConnectionClient());
+		this.oauthClient = new OAuthClient(new OAuthJerseyClient(client));
 	}
 
 	/**
