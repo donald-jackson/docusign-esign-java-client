@@ -1,0 +1,21 @@
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+stages:
+  - build_jar
+
+image: ballad/gradle-ami-builder:0.1.3
+
+build_jar:
+  stage: build_jar
+  variables:
+    DOCKER_DRIVER: overlay2
+    GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  script:
+    - "./gradlew --parallel publish"
+
